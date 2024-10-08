@@ -72,12 +72,17 @@ def wyswietl_najpopularniejsze(biblioteka):
     for item in top:
         print(f"{item} - {item.liczba_odtworzen} odtworzeń")
 
+if __name__ == "__main__":
 
-biblioteka.append(Film("Pulp Fiction", 1994, "Crime"))
-biblioteka.append(Film("The Godfather", 1972, "Crime"))
-biblioteka.append(Serial("The Simpsons", 1989, "Comedy", 5, 1))
-biblioteka.append(Serial("Breaking Bad", 2008, "Drama", 1, 1))
-biblioteka.append(Serial("Friends", 1994, "Comedy", 10, 1))
+    biblioteka = [ 
+
+        Film("Pulp Fiction", 1994, "Crime"),
+        Film("The Godfather", 1972, "Crime"),
+        Serial("The Simpsons", 1989, "Comedy", 5, 1),
+        Serial("Breaking Bad", 2008, "Drama", 1, 1),
+        Serial("Friends", 1994, "Comedy", 10, 1),
+
+    ]
 
 
 print("Biblioteka filmów i seriali")

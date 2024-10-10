@@ -29,41 +29,33 @@ class Serial(Film):
         return f"{self.tytul} S{self.numer_sezonu:02}E{self.numer_odcinka:02}"
 
 
-biblioteka = []
-
+def filter_content_by_type(biblioteka, content_type):
+    return sorted([item for item in biblioteka if type(item) == content_type], key=lambda x: x.tytul)
 
 def get_movies(biblioteka):
-   
-    return sorted([item for item in biblioteka if isinstance(item, Film) and not isinstance(item, Serial)], key=lambda x: x.tytul)
+   return filter_content_by_type(biblioteka, Film)
 
 def get_series(biblioteka):
-    
-    return sorted([item for item in biblioteka if isinstance(item, Serial)], key=lambda x: x.tytul)
-
-def search(biblioteka, tytul):
-    
-    for item in biblioteka:
-        if item.tytul.lower() == tytul.lower():
-            return item
-    return None  
+     return filter_content_by_type(biblioteka, Serial)
 
 def generate_views(biblioteka):
-    
+   
     item = random.choice(biblioteka)
-    
+   
     item.liczba_odtworzen += random.randint(1, 100)
 
 def run_generate_views(biblioteka, times=10):
-    
-    for _ in range(times):
-        generate_views(biblioteka)
+       
+        for _ in range(times):
+            generate_views(biblioteka)
 
 def top_titles(biblioteka, n=3):
     
     return sorted(biblioteka, key=lambda x: x.liczba_odtworzen, reverse=True)[:n]
 
+
 def wyswietl_najpopularniejsze(biblioteka):
-    
+   
     dzisiaj = datetime.now().strftime("%d.%m.%Y")
     print(f"Najpopularniejsze filmy i seriale dnia {dzisiaj}:")
     
@@ -71,6 +63,7 @@ def wyswietl_najpopularniejsze(biblioteka):
     top = top_titles(biblioteka, 3)
     for item in top:
         print(f"{item} - {item.liczba_odtworzen} odtworzeń")
+
 
 if __name__ == "__main__":
 
@@ -85,10 +78,10 @@ if __name__ == "__main__":
     ]
 
 
-print("Biblioteka filmów i seriali")
+    print("Biblioteka filmów i seriali")
 
 
-run_generate_views(biblioteka)
+    run_generate_views(biblioteka)
 
 
-wyswietl_najpopularniejsze(biblioteka)
+    wyswietl_najpopularniejsze(biblioteka)
